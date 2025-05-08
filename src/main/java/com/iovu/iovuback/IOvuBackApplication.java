@@ -11,4 +11,5 @@ public class IOvuBackApplication {
 	}
 
 	private String name;
+	private String id;
 }
