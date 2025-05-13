@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iovu.iovuback.mapper.DashboardMapper">
+    <select id="getDashboard" resultType="DashBoard">
+        SELECT
+            d.dashboard_id,
+            d.report_detail_id,
+            d.result_summary,
+            d.brand_rate1,
+            d.brand_rate2,
+            d.brand_rank,
+            d.domain_rate1,
+            d.domain_rate2,
+            d.brand_mention
+        FROM dashboard d
+                 INNER JOIN report_detail rd ON d.report_detail_id = rd.report_detail_id
+        WHERE rd.ai_type = #{aiType}
+    </select>
+</mapper>
