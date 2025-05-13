@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iovu.iovuback.mapper.ReportMapper">
+
+  <resultMap id="reportMap" type="com.iovu.iovuback.domain.ReportList">
+    <id column="report_id" property="report_id"/>
+    <result column="keyword"      property="keyword"/>
+    <result column="status"       property="status"/>
+    <result column="data_volume"  property="data_volume"/>
+    <result column="created_at"   property="created_at"/>
+    <result column="updated_at"   property="updated_at"/>
+  </resultMap>
+
+  <select id="findById" parameterType="long" resultMap="reportMap">
+    SELECT * FROM report_list WHERE report_id = #{id}
+  </select>
+  <delete id="deleteById" parameterType="long">
+    DELETE FROM report_list WHERE report_id = #{id}
+  </delete>
+</mapper>
