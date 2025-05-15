@@ -19,6 +19,7 @@ public class ReportDetail {
 
     private Consulting consulting;
     private DomainLink domain_link;
+    private Dashboard dashboard;
 
 
     public ReportDetail(Integer report_id, String ai_type, Timestamp created_at, String json_data, Consulting consulting) {

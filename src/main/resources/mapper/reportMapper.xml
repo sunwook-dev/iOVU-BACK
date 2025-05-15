@@ -1,50 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.iovu.iovuback.mapper.ReportDetailMapper">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-    <!-- ResultMap 정의 -->
-    <resultMap id="reportExport" type="ReportDTO">
-        <id property="report_detail_id" column="report_detail_id"/>
-        <result property="report_id" column="report_id"/>
-        <result property="ai_type" column="ai_type"/>
-        <result property="created_at" column="created_at"/>
-        <result property="json_data" column="json_data"/>
+<mapper namespace="com.iovu.iovuback.mapper.ReportMapper">
 
-        <result property="keyword" column="keyword"/>
-        <result property="data_volume" column="data_volume"/>
+  <resultMap id="reportMap" type="com.iovu.iovuback.domain.ReportList">
+    <id column="report_id" property="report_id"/>
+    <result column="keyword"      property="keyword"/>
+    <result column="status"       property="status"/>
+    <result column="data_volume"  property="data_volume"/>
+    <result column="created_at"   property="created_at"/>
+    <result column="updated_at"   property="updated_at"/>
+  </resultMap>
 
-
-<!--                &lt;!&ndash; Consulting 관련 매핑 &ndash;&gt;-->
-<!--                <association property="consulting" javaType="com.iovu.iovuback.domain.Consulting">-->
-<!--                    <id property="consulting_id" column="consulting_id"/>-->
-<!--                    <result property="consulting_name" column="consulting_name"/>-->
-<!--                    <result property="consulting_description" column="consulting_description"/>-->
-<!--                </association>-->
-
-        <!--        &lt;!&ndash; Dashboard 관련 매핑 &ndash;&gt;-->
-        <!--        <association property="dashboard" javaType="com.iovu.iovuback.domain.Dashboard">-->
-        <!--            <id property="dashboard_id" column="dashboard_id"/>-->
-        <!--            <result property="dashboard_name" column="dashboard_name"/>-->
-        <!--            <result property="dashboard_config" column="dashboard_config"/>-->
-        <!--        </association>-->
-    </resultMap>
-
-
-    <!-- ReportDetail 조회 -->
-    <select id="getReportDetailWithKeyword" parameterType="int" resultMap="reportExport">
-        SELECT
-            rd.report_detail_id,
-            rd.report_id,
-            rd.ai_type,
-            rd.created_at,
-            rd.json_data,
-            rl.keyword,
-            rl.data_volume
-        FROM
-            report_detail rd
-                JOIN
-            report_list rl ON rd.report_id = rl.report_id
-        WHERE
-            rd.report_detail_id = #{report_detail_id}
-        </select>
+  <select id="findById" parameterType="long" resultMap="reportMap">
+    SELECT * FROM report_list WHERE report_id = #{id}
+  </select>
+  <delete id="deleteById" parameterType="long">
+    DELETE FROM report_list WHERE report_id = #{id}
+  </delete>
 </mapper>

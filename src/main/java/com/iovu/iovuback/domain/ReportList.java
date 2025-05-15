@@ -20,14 +20,13 @@ public class ReportList {
     private Timestamp updated_at;
 
     private List<ReportDetail> report_details;
-    private Dashboard dashboard;
 
 
-    public ReportList(String keyword, String status, Integer data_volume) {
+    public ReportList(String keyword, String status, Integer data_volume, List<ReportDetail> report_details) {
         this.keyword = keyword;
         this.status = status;
         this.data_volume = data_volume;
-//        this.report_details = report_details;
+        this.report_details = report_details;
     }
 
 }
