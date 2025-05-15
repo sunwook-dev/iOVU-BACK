@@ -34,4 +34,5 @@ build/
 
 ### YAML ###
 #src/main/resources/application.yaml
-
+.DS_Store
+.mvnw
