@@ -49,3 +49,10 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.iovu.iovuback.domain, com.iovu.iovuback.dto
+
+pdf:
+  font:
+    path: classpath:fonts/NanumGothic.ttf
+
+  
+
