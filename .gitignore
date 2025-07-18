@@ -40,7 +40,7 @@ application-*.log
 
 # Environment variables and sensitive data
 .env
-.env.*
+.env
 /src/main/resources/application.yml
 application.yml
 /src/main/resources/application.properties
