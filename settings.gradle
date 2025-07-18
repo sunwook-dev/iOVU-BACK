@@ -1,0 +1,17 @@
+// Gradle Plugin Portal 활성화
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+// Dependency Resolution Management
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'oauth2-backend'

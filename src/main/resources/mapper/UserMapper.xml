@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iovu.iovuback.mapper.UserMapper">
+    <select id="selectUserIdByProviderAndSocialId" resultType="int">
+        SELECT user_id FROM users WHERE social_provider = #{socialProvider} AND social_id = #{socialId}
+    </select>
+    <select id="selectReportIdByUserIdAndTitle" resultType="int">
+        SELECT report_id FROM Reports WHERE user_id = #{userId} AND report_title = #{reportTitle}
+    </select>
+</mapper>

@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.iovu'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    // Spring Boot Starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    
+    // Environment Variables Support
+    implementation 'me.paulschwarz:spring-dotenv:2.5.4'
+    
+    // JWT Dependencies
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    
+    // MyBatis
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    // runtimeOnly 'com.h2database:h2'
+    
+    // Lombok (도메인 객체 편의)
+    implementation 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    // MySQL JDBC
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    
+    // Test Dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// JAR 빌드 설정
+jar {
+    enabled = false
+    archiveClassifier = ''
+}
+
+// Spring Boot JAR 빌드 설정
+bootJar {
+    enabled = true
+    archiveClassifier = ''
+    mainClass = 'com.iovu.oauth2.OAuth2BackendApplication'
+}
+
+// Gradle 실행 설정
+tasks.named('bootRun') {
+    jvmArgs = ['-Dspring.profiles.active=dev']
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iovu.iovuback.mapper.ReportMapper">
+    <resultMap id="ReportResultMap" type="com.iovu.iovuback.domain.ReportEntity">
+        <id property="reportId" column="report_id" />
+        <result property="userId" column="user_id" />
+        <result property="reportTitle" column="report_title" />
+        <result property="reportContent" column="report_content" />
+        <result property="createdAt" column="created_at" />
+    </resultMap>
+    <resultMap id="ReportSummaryResultMap" type="com.iovu.iovuback.dto.ReportSummaryDTO">
+        <id property="reportId" column="report_id" />
+        <result property="reportTitle" column="report_title" />
+    </resultMap>
+    <select id="selectReportSummariesByUserUid" parameterType="int" resultMap="ReportSummaryResultMap">
+        SELECT report_id, report_title FROM Reports WHERE user_id = #{userUid}
+    </select>
+    <select id="selectReportById" parameterType="int" resultMap="ReportResultMap">
+        SELECT * FROM Reports WHERE report_id = #{reportId}
+    </select>
+    <insert id="insertReport" parameterType="com.iovu.iovuback.domain.ReportEntity">
+        INSERT INTO Reports (user_id, report_title, report_content, created_at)
+        VALUES (#{userId}, #{reportTitle}, #{reportContent}, #{createdAt})
+    </insert>
+</mapper>
