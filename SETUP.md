@@ -148,6 +148,9 @@ SERVER_PORT=8081
 ### 5.1 의존성 설치 및 빌드
 
 ```bash
+# wrapper파일 생성
+gradle wrapper
+
 # Windows
 gradlew.bat build
 
